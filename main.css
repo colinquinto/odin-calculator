@@ -30,12 +30,26 @@ body {
 }
 
 .displayField {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    padding: 5px;
     margin: 5px;
     width: 90%;
     height: 25%;
     border-style: solid;
     border-radius: 10px;
     background-color: #fff;
+}
+
+.first {   
+    direction: rtl;
+    font-size: 40px;
+}
+
+.second {
+    font-size: 30px;
 }
 
 .calculator button {
