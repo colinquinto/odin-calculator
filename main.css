@@ -43,10 +43,25 @@ body {
     border-radius: 10px;
     width: 20%;
     font-size: 30px;
-    background-color: #FEF9E7;
     font-family: monospace;
 }
 
 .calculator button:hover {
     background-color: #FAD7A0;
+}
+
+.number, .decimal , .equal {
+    background-color: #FBEEE6;
+}
+
+.operator {
+    background-color: #EB984E;
+}
+
+.reset, .delete {
+    background-color: #D35400;
+}
+
+.posneg, .percentage {
+    background-color: #F5CBA7;
 }
