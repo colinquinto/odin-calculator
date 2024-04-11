@@ -22,8 +22,9 @@ body {
     justify-content: center;
     border-style: solid;
     border-radius: 10px;
-    height: 400px;
-    width: 400px;
+    min-height: 600px;
+    max-width: 600px;
+    min-width: 600px;
     padding: 25px 0;
     background-color: #FCF3CF;
   
@@ -36,20 +37,20 @@ body {
     justify-content: center;
     padding: 5px;
     margin: 5px;
-    width: 90%;
-    height: 25%;
+    min-width: 90%;
+    height: 150px;
     border-style: solid;
     border-radius: 10px;
     background-color: #fff;
 }
 
 .first {   
-    direction: rtl;
-    font-size: 40px;
+    direction: ltr;
+    font-size: 50px;
 }
 
 .second {
-    font-size: 30px;
+    font-size: 45px;
 }
 
 .calculator button {
