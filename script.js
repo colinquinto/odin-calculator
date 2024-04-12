@@ -11,17 +11,21 @@ const calculation = {
     '/': (num1, num2) => num1 / num2,
 }
 
-// Function for calculating the values of first and second number based on the operator
+// Store first and second number for display
+const firstNumber = document.querySelector(".first");
+const secondNumber = document.querySelector(".second");
+
+// Compute the given values based on the operator used when called
 const performCalculation = () => {
     if (operate === '/' && firstValue === '0' || secondValue === '0'){
-        alert("Cannot Divide by 0")
         resetValues()
+        firstNumber.textContent = "Error! Cannot Divide by 0"
     }
     else{
         secondNumber.textContent = '';
         // Store the calculated value
         let newValue = calculation[operate](Number(secondValue), Number(firstValue));
-        // Check if the new value is decimal, then limit it to 3 decimal places
+        // Check if the new value is decimal, then limit it to 3 decimal places if true
         newValue % 1 != 0
         ? firstNumber.textContent = newValue.toFixed(3) 
         : firstNumber.textContent = newValue
@@ -34,7 +38,7 @@ const performCalculation = () => {
     }
 }
 
-// Function for resetting the values and operator
+// Reset all the values and operator when called
 const resetValues = () => {
     firstValue = '';
     firstNumber.textContent = '';
@@ -51,13 +55,8 @@ const transferValue = () => {
             firstNumber.textContent = '';
             firstValue = '';
 }
-
-// Store first and second number for display
-const firstNumber = document.querySelector(".first");
-const secondNumber = document.querySelector(".second");
-
     
-// Get all the numbers, assign click event on each of the numbers, store the value for later use
+// Assing click event on all of the number buttons
 const containNumbers = document.querySelectorAll(".number");
     containNumbers.forEach((eachNumber) => eachNumber.addEventListener('click', (event) =>{
         const getNum = event.target.textContent
@@ -67,7 +66,7 @@ const containNumbers = document.querySelectorAll(".number");
         firstNumber.textContent = firstValue;
     }))
 
-// Get operator and assign click event on each of them and store the value for later use
+// Assign click event on all of the operator buttons
 const operator = document.querySelectorAll(".operator");
     operator.forEach((eachOperator) => eachOperator.addEventListener('click', (event) => {
         if (firstValue === '' && secondValue === '') {
@@ -79,42 +78,54 @@ const operator = document.querySelectorAll(".operator");
               operate = event.target.textContent;
               secondNumber.textContent = secondValue + ' ' + operate;
             }
-            // Perform calculation first when the user clicks another operator while the first and second numbers has a value
+            // Perform calculation first when the user clicks another operator if the first and second numbers has a value
             else {
               performCalculation();
               operate = event.target.textContent;
               transferValue();
             }
         }
-
         else { 
-            // If the second value is empty, transfer the first value to it after the user clicks an operator, then empty out the first value for another input
             operate = event.target.textContent;
             transferValue();
         }
     }))
+
+// Reset values and operator when reset button is clicked
+const clear = document.querySelector(".reset");
+clear.addEventListener('click', () => {
+    resetValues()
+})
     
-// Slice a single character when the Delete button is clicked
+
 const deleteOne = document.querySelector(".delete");
     deleteOne.addEventListener('click', () => {
-
+        // Slice a single character when the Delete button is clicked
         if (firstValue !== ''){
             firstNumber.textContent = firstNumber.textContent.slice(0, -1);
             firstValue = firstNumber.textContent;
         }
-        else {
-            firstNumber.textContent = secondValue;
-            firstValue = firstNumber.textContent
-            secondNumber.textContent = '';
-            secondValue = '';
-            operate = '';
-        }})
+    })
+
+const posneg = document.querySelector(".posneg");
+    posneg.addEventListener('click', () => {
+        // Convert value to positive or negative
+        if (firstNumber.textContent[0] === '-') {
+            firstNumber.textContent = firstNumber.textContent.substring(1);
+            firstValue = firstNumber.textContent;
+        }
+         else {
+             firstNumber.textContent = '-' + firstNumber.textContent
+             firstValue = firstNumber.textContent;
+          }  
+    })
     
-// Get the equal button, add click event, then perform calculation if the Values are not empty
+
 const equal = document.querySelector(".equal");
+    // Compute the values of the two numbers when equal button is clicked
     equal.addEventListener('click', () => {
         if(firstValue === '' ||  secondValue === '' || operate === ''){
-            // If the values are empty, do nothing
+            // If one of the values are empty, do nothing
         }
         else{
             performCalculation();
@@ -122,10 +133,14 @@ const equal = document.querySelector(".equal");
 
 
 const decimal = document.querySelector(".decimal");
-
-
-// Reset values and operator when reset button is clicked
-const clear = document.querySelector(".reset");
-    clear.addEventListener('click', () => {
-        resetValues()
+    decimal.addEventListener('click', () => {
+       if(firstNumber.textContent.includes('.')){
+         // If a decimal point already exists, do nothing
+       }
+       else {
+        firstNumber.textContent = firstNumber.textContent + '.';
+        firstValue = firstNumber.textContent;
+       }
     })
+
+
