@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: monospace;
 }
 
 body {
@@ -14,6 +15,9 @@ body {
     justify-content: center;
     min-height: 95vh;
     height: 100vh;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
 }
 
 .calculator {
@@ -22,12 +26,11 @@ body {
     justify-content: center;
     border-style: solid;
     border-radius: 10px;
-    min-height: 600px;
-    max-width: 600px;
-    min-width: 600px;
+    min-height: 500px;
+    max-width: 400px;
+    min-width: 250px;
     padding: 25px 0;
     background-color: #FCF3CF;
-  
 }
 
 .displayField {
@@ -37,28 +40,19 @@ body {
     justify-content: center;
     padding: 5px;
     margin: 5px;
-    min-width: 90%;
-    height: 150px;
+    width: 90%;
+    height: 100px;
     border-style: solid;
     border-radius: 10px;
     background-color: #fff;
-}
-
-.first {   
-    direction: ltr;
-    font-size: 50px;
-}
-
-.second {
-    font-size: 45px;
+    font-size: clamp(14px, 4vw, 22px);
 }
 
 .calculator button {
     margin: 5px;
     border-radius: 10px;
     width: 20%;
-    font-size: 30px;
-    font-family: monospace;
+    font-size: clamp(20px, 5vw, 30px);
 }
 
 .calculator button:hover {
