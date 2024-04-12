@@ -48,6 +48,10 @@ body {
     font-size: clamp(20px, 4vw, 30px);
 }
 
+.first{
+    text-align: right;
+}
+
 .calculator button {
     margin: 5px;
     border-radius: 10px;
