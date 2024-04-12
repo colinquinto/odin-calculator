@@ -45,14 +45,14 @@ body {
     border-style: solid;
     border-radius: 10px;
     background-color: #fff;
-    font-size: clamp(14px, 4vw, 22px);
+    font-size: clamp(20px, 4vw, 30px);
 }
 
 .calculator button {
     margin: 5px;
     border-radius: 10px;
     width: 20%;
-    font-size: clamp(20px, 5vw, 30px);
+    font-size: clamp(20px, 5vw, 24px);
 }
 
 .calculator button:hover {
