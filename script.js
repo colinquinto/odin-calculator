@@ -19,12 +19,19 @@ const performCalculation = () => {
     }
     else{
         secondNumber.textContent = '';
+        // Store the calculated value
         let newValue = calculation[operate](Number(secondValue), Number(firstValue));
+        // Check if the new value is decimal, then limit it to 3 decimal places
         newValue % 1 != 0
         ? firstNumber.textContent = newValue.toFixed(3) 
         : firstNumber.textContent = newValue
         firstValue = Number(newValue.toFixed(3));
-        secondValue = '';}
+        secondValue = '';
+        // Convert the number to its exponential form when its length is over 15
+        if (firstNumber.textContent.length > 15) {
+            firstNumber.textContent = Number(newValue).toExponential(8) // Set number of digits after decimal point to 8
+        }
+    }
 }
 
 // Function for resetting the values and operator
