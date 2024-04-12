@@ -37,6 +37,14 @@ const resetValues = () => {
     operate.textContent = '';
 }
 
+// Transfer the first value to second value, then reset first value and text content when called
+const transferValue = () => {
+            secondNumber.textContent = firstNumber.textContent + ' ' + operate;
+            secondValue = firstValue;
+            firstNumber.textContent = '';
+            firstValue = '';
+}
+
 // Store first and second number for display
 const firstNumber = document.querySelector(".first");
 const secondNumber = document.querySelector(".second");
@@ -45,7 +53,7 @@ const secondNumber = document.querySelector(".second");
 // Get all the numbers, assign click event on each of the numbers, store the value for later use
 const containNumbers = document.querySelectorAll(".number");
     containNumbers.forEach((eachNumber) => eachNumber.addEventListener('click', (event) =>{
-        let getNum = event.target.textContent
+        const getNum = event.target.textContent
         if (firstValue.length < 10) {
             firstValue += getNum;
         }
@@ -53,7 +61,7 @@ const containNumbers = document.querySelectorAll(".number");
     }))
 
 // Get operator and assign click event on each of them and store the value for later use
-let operator = document.querySelectorAll(".operator");
+const operator = document.querySelectorAll(".operator");
     operator.forEach((eachOperator) => eachOperator.addEventListener('click', (event) => {
         if (firstValue === '' && secondValue === '') {
          // If the values are empty, do nothing
@@ -68,25 +76,19 @@ let operator = document.querySelectorAll(".operator");
             else {
               performCalculation();
               operate = event.target.textContent;
-              secondNumber.textContent = firstNumber.textContent + ' ' + operate;
-              firstNumber.textContent = '';
-              secondValue = firstValue;
-              firstValue = '';
+              transferValue();
             }
         }
 
         else { 
             // If the second value is empty, transfer the first value to it after the user clicks an operator, then empty out the first value for another input
             operate = event.target.textContent;
-            secondNumber.textContent = firstNumber.textContent + ' ' + operate;
-            firstNumber.textContent = '';
-            secondValue = firstValue;
-            firstValue = '';
+            transferValue();
         }
     }))
     
-// Get delete buttons
-let deleteOne = document.querySelector(".delete");
+// Slice a single character when the Delete button is clicked
+const deleteOne = document.querySelector(".delete");
     deleteOne.addEventListener('click', () => {
 
         if (firstValue !== ''){
@@ -102,21 +104,21 @@ let deleteOne = document.querySelector(".delete");
         }})
     
 // Get the equal button, add click event, then perform calculation if the Values are not empty
-let equal = document.querySelector(".equal");
+const equal = document.querySelector(".equal");
     equal.addEventListener('click', () => {
         if(firstValue === '' ||  secondValue === '' || operate === ''){
-            // If the values are empty = do nothing
+            // If the values are empty, do nothing
         }
         else{
             performCalculation();
         }})
 
 
-let decimal = document.querySelector(".decimal");
+const decimal = document.querySelector(".decimal");
 
 
 // Reset values and operator when reset button is clicked
-let clear = document.querySelector(".reset");
+const clear = document.querySelector(".reset");
     clear.addEventListener('click', () => {
         resetValues()
     })
