@@ -78,3 +78,7 @@ body {
 .posneg, .percentage {
     background-color: #F5CBA7;
 }
+
+#zero {
+    min-width: 43%;
+}
