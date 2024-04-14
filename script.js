@@ -21,11 +21,16 @@ const performCalculation = () => {
     }
     else{
         secondNumber.textContent = '';
-        let newValue = Number(calculation[operate](Number(secondValue), Number(firstValue)));
+        let newValue = calculation[operate](Number(secondValue), Number(firstValue));
         // Check if the new value is decimal,then limit it to 2 decimal places if true
-        newValue % 1 != 0 ? newValue.toFixed(2) : newValue;
-        firstNumber.textContent = newValue;
-        firstValue = newValue;
+        if (newValue % 1 !== 0){
+            firstValue = Number(newValue).toFixed(2);
+            firstNumber.textContent = firstValue;
+        }
+        else {
+            firstValue = newValue;
+            firstNumber.textContent = firstValue;
+        }
         secondValue = '';
         // Convert the number to its exponential form when its length is over 15
         if (firstNumber.textContent.length > 15) {
@@ -37,7 +42,7 @@ const performCalculation = () => {
 // Reset all the values and operator when called
 const resetValues = () => {
     firstValue = '';
-    firstNumber.textContent = '0';
+    firstNumber.textContent = '';
     secondValue = '';
     secondNumber.textContent = '';
     operate = '';
@@ -65,34 +70,47 @@ const containNumbers = document.querySelectorAll(".number");
         // Check if the key pressed is a number using regex
         if (event.key.match(/^\d+$/)) {
             if (firstNumber.textContent.length < 10) {
-            firstValue += getOpt;
+            firstValue = firstValue + String(getOpt);
             firstNumber.textContent = firstValue;
          }}
     })
 
 const operator = document.querySelectorAll(".operator");
-    operator.forEach((eachOperator) => eachOperator.addEventListener('click', (event) => {
+
+    let optFunc = (opt) => {
         if (firstValue === '' && secondValue === '') {
             // Do nothing
         }
         else if (secondValue !== '') {
             // Allow the user to change the operator they are using while the first value is empty
             if (firstValue === '') {
-              operate = event.target.textContent;
+              operate = opt;
               secondNumber.textContent = secondValue + ' ' + operate;
             }
             // Perform calculation first when the user clicks another operator if the first and second numbers has a value
             else {
               performCalculation();
-              operate = event.target.textContent;
+              operate = opt;
               transferValue();
             }
         }
         else { 
-            operate = event.target.textContent;
+            operate = opt;
             transferValue();
         }
+    }
+
+    operator.forEach((eachOperator) => eachOperator.addEventListener('click', (event) => {
+        optFunc(event.target.textContent)
     }))
+
+    window.addEventListener('keydown', (event) => {
+        
+        if (event.key === '+' || event.key === '-' ||event.key === '*' || event.key === '/' ) {
+            optFunc(event.key)
+        }
+    })
+  
 
 const clear = document.querySelector(".reset");
 clear.addEventListener('click', () => {
@@ -134,17 +152,6 @@ const posneg = document.querySelector(".posneg");
           }  
     })
 
-const percentage = document.querySelector(".percentage")
-    percentage.addEventListener('click', () => {
-        if(firstNumber.textContent.includes('%') || firstNumber.textContent === ''){
-            // If a percent symbol already exists or the display text is empty, do nothing
-          }
-          else {
-           firstValue = Number(firstNumber.textContent / 100).toFixed(2); // Divide the number by 100 to convert it from percentage
-           firstNumber.textContent = firstNumber.textContent + '%';
-          }
-    })
-
 const equal = document.querySelector(".equal");
     equal.addEventListener('click', (event) => {
         if(firstValue === '' ||  secondValue === '' || operate === ''){
@@ -172,7 +179,7 @@ const decimal = document.querySelector(".decimal");
          // If a decimal point already exists, do nothing
        }
        else {
-        firstNumber.textContent = firstNumber.textContent + '.';
+        firstNumber.textContent += '.';
         firstValue = firstNumber.textContent;
        }
     })
