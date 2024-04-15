@@ -34,7 +34,8 @@ const performCalculation = () => {
         secondValue = '';
         // Convert the number to its exponential form when its length is over 15
         if (firstNumber.textContent.length > 15) {
-            firstNumber.textContent = newValue.toExponential(8) // Set number of digits after decimal point to 8
+            firstNumber.textContent = newValue.toExponential(8); // Set number of digits after decimal point to 8
+            firstValue = firstNumber.textContent;
         }
     }
 }
