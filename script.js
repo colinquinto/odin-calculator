@@ -146,7 +146,7 @@ const posneg = document.querySelector(".posneg");
             firstNumber.textContent = firstNumber.textContent.substring(1);
             firstValue = firstNumber.textContent;
         }
-        else if (!firstNumber.textContent.includes('%') && firstNumber.textContent !== '0'){
+        else if (firstNumber.textContent !== '' && firstNumber.textContent !== '0'){
             firstNumber.textContent = '-' + firstNumber.textContent;
             firstValue = firstNumber.textContent;
           }  
