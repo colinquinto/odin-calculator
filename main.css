@@ -82,3 +82,12 @@ body {
 #zero {
     min-width: 43%;
 }
+
+.equal {
+    background-color: #3882f6;
+    color: #fff;
+}
+
+.equal:hover {
+    color: #000;
+}
