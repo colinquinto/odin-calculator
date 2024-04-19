@@ -6,14 +6,13 @@
 }
 
 body {
-    background-color: #FBEEE6;
+    background-color: #f0f9ff;
 }
 
 .mainContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 95vh;
     height: 100vh;
     max-width: 800px;
     margin: auto;
@@ -26,11 +25,13 @@ body {
     justify-content: center;
     border-style: solid;
     border-radius: 10px;
+    border: none;
     min-height: 500px;
     max-width: 400px;
     min-width: 250px;
     padding: 25px 0;
-    background-color: #FCF3CF;
+    background-color: #bae6fd;
+    box-shadow: 1px 1px 10px #000;
 }
 
 .displayField {
@@ -44,6 +45,7 @@ body {
     height: 100px;
     border-style: solid;
     border-radius: 10px;
+    border: none;
     background-color: #fff;
     font-size: clamp(20px, 4vw, 30px);
 }
@@ -55,28 +57,38 @@ body {
 .calculator button {
     margin: 5px;
     border-radius: 10px;
+    border: none;
     width: 20%;
     font-size: clamp(20px, 5vw, 24px);
 }
 
-.calculator button:hover {
-    background-color: #FAD7A0;
+.calculator button {
+    outline: 1px solid #7dd3fc;
 }
 
-.number, .decimal , .equal {
-    background-color: #FBEEE6;
+.number, .decimal {
+    background-color: #f8fafc;
 }
 
-.operator {
-    background-color: #EB984E;
+.number:hover, .decimal:hover {
+    background-color: #e2e8f0;
+}
+
+.operator, .posneg {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+.operator:hover, .posneg:hover {
+    background-color: #2563eb;
 }
 
 .reset, .delete {
-    background-color: #D35400;
+    background-color: #ef4444;
 }
 
-.posneg, .percentage {
-    background-color: #F5CBA7;
+.reset:hover , .delete:hover {
+    background-color: #dc2626;
 }
 
 #zero {
@@ -84,10 +96,10 @@ body {
 }
 
 .equal {
-    background-color: #3882f6;
+    background-color: #22c55e;
     color: #fff;
 }
 
 .equal:hover {
-    color: #000;
+    background-color: #16a34a;
 }
